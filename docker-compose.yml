@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:latest
+    container_name: lf-fun-postgres
+    environment:
+      POSTGRES_USER: myuser # Replace with your desired username
+      POSTGRES_PASSWORD: mypassword # Replace with your desired password
+      POSTGRES_DB: lf_fundb
+    volumes:
+      - pg_data:/var/lib/postgresql/data  # Named volume for persistence
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+volumes:
+  pg_data:  # Define the named volume
